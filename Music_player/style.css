@@ -1,0 +1,117 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+:root {
+    --color-bg: #354259;
+    --color-primary: #fde3ed;
+    --color-secondary: #F9F5F6;
+    --color-accent: #fb629a;
+    --shadow-light: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    --shadow-strong: rgba(0, 0, 0, 0.20) 0px 5px 15px;
+}
+body{
+    height: 100vh;
+    width: 100%;
+    background-color: var(--color-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    width: 400px;
+    background-color: var(--color-primary);
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.container nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-logo div{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: var(--color-secondary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-strong);
+}
+.detailes{
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.logo{
+    width: 220px;
+    height: 200px;
+    border-radius: 50%;
+    border: 8px solid #fff;
+    box-shadow: var(--shadow-strong);
+    
+}
+.detailes h1{
+    padding: 10px 0px;
+    font-size: 23px;
+    font-weight: bold;
+    color: black;
+}
+.detailes p{
+    font-size: 18px;
+    padding: 10px 0px;
+    opacity: 0.9;
+}
+#slide{
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    margin: 40px 0px;
+    cursor: pointer;
+    outline: none;
+    border-radius: 0.5rem;
+    background-color: var(--color-accent);
+}
+#slide::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    width: 25px;
+    height: 25px;
+    color: var(--color-accent);
+    border-radius: 50%;
+    background: var(--color-accent);
+    border: 0.4rem solid var(--color-secondary);
+    cursor: pointer;
+    box-shadow: var(--shadow-strong);
+}
+
+.controlButtons{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px;
+    
+}
+
+.controlButtons div{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: var(--color-accent);
+    background-color: white;
+    border: 1px solid black;
+    box-shadow: var(--shadow-light);  
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.controlButtons div:nth-child(2){
+    color: white;
+    background-color: var(--color-accent);
+    transform: scale(1.5) ;
+}
+
