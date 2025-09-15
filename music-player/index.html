@@ -1,1 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>music player</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="nav-logo">
+            <div><i class="fa-solid fa-angle-left"></i></div>
+            <div><i class="fa-solid fa-bars"></i></div>
+        </nav>
+        <main class="detailes">
+            <img class="logo" src="images/music.png" alt="image">
+            <h1>music</h1>
+            <p>chinnari BGM</p>
+            <audio  id="song">
+                    <source src="song.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+            </audio>
 
+            
+            <input type="range" name="range" min="0"  value="0" step="0.1" id="slide">
+        </main>
+        <div class="controlButtons">
+            <div><i class="fa-solid fa-backward-step"></i></div>
+            <div><i id="control-icon" class="fa-solid fa-play" onclick="playPause()"></i></div>
+            <div><i class="fa-solid fa-forward-step"></i></div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
