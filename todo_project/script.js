@@ -1,12 +1,14 @@
 let input=document.getElementById('todo-input')
 let add=document.getElementById('add-btn')
 let list=document.getElementById('todo-list')
+let edit=document.querySelector('.edit')
 
 add.addEventListener('click',()=>{
     let inputValue=input.value.trim();
     if(inputValue==='')return
     let li=document.createElement('li')
     li.innerHTML=`<span>${inputValue}</span>
+                  <button class="edit">✏️</button>
                   <button class="delete">❌</button>`
     list.append(li);
     savetodos()
@@ -23,8 +25,28 @@ list.addEventListener('click',(e)=>{
         e.target.parentElement.remove()
         savetodos()
     }
+    if(e.target.classList.contains('edit')){
+        let editbtn=e.target
+        let li=editbtn.parentElement
+        let span=li.getElementsByTagName('span')[0]
+        if(editbtn.innerText==="💾"){
+            span.contentEditable="false"
+            editbtn.innerText="✏️"
+            savetodos()
+            return
+        }
+        span.contentEditable = "true";
+        span.focus();
+        editbtn.innerText="💾"
+        
+    
+        
+    }
 
 })
+
+
+
 
 
 function savetodos(){
@@ -44,7 +66,8 @@ function loadtodos(){
     savedtodos.forEach((todo)=>{
         let li=document.createElement('li')
         li.innerHTML=`<span class=${todo.completed ? "completed":""}>${todo.inputValue}</span>
-                  <button class="delete">❌</button>`
+                    <button class="edit">✏️</button>
+                    <button class="delete">❌</button>`
         list.append(li);
     })
 }
