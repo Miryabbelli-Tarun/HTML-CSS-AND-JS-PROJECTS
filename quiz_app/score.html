@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fullbackground">
+    <div class="container1">
+        <h2>Super Hero Quiz</h2>
+        <p class="lable" id="lable">Your score:0/0</p>
+        <button class="score_quit_btn" onclick="quitquiz()">Quit</button>
+    </div>
+
+    <script>
+        const quitquiz=()=>{
+            localStorage.clear();
+            window.location.href='index.html';
+        }
+        document.getElementById('lable').innerText=`Your Score:${localStorage.getItem('finalscore')}`
+    </script>
+</body>
+</html>
