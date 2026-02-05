@@ -1,0 +1,63 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Gemstones&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.fullbackground{
+    width: 100%;
+    height: 100vh;
+    background-image: url('images/background.png');
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center ;
+}
+.container1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+.container1 h2{
+    font-size: 55px;
+    font-weight: 300;
+    color: yellow;
+    font-family: "Rubik Gemstones", system-ui;
+    margin: 10px 0px;
+}
+.container1 p{
+    font-size: 30px;
+    color: white;
+    margin: 10px 0px;
+}
+.hrline1{
+    width: 250px;
+    height: 3px;
+    background-color: white;
+}
+
+.conatiner2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.card1{
+    width: 250px;
+    height: 330px;
+    border-radius: 5px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.card1 img{
+    width: 95%;
+    object-fit: cover;
+}

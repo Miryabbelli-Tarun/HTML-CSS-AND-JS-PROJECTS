@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="quiz.css">
+</head>
+<body class="fullbackground">
+    <div class="container1">
+        <h2>Super Hero Quiz</h2>
+    </div>
+    <div class="container2">
+        <div class="question" id="question">
+            <p>Q1.which is not a marvel charecter</p>
+        </div>
+
+        <div class="option " id="option1out" onclick="clickedoption('1')">
+            <div class="circle"></div>
+            <p class="optionIn" id="option1">this is option</p>
+        </div>
+
+        <div class="option " id="option2out" onclick="clickedoption('2')">
+            <div class="circle"></div>
+            <p class="optionIn" id="option2">this is option</p>
+        </div>
+
+        <div class="option" id="option3out" onclick="clickedoption('3')">
+            <div class="circle"></div>
+            <p class="optionIn" id="option3">this is option</p>
+        </div>
+
+        <div class="option" id="option4out" onclick="clickedoption('4')">
+            <div class="circle"></div>
+            <p class="optionIn" id="option4">this is option</p>
+        </div>
+    </div>
+    <div class="container3">
+        <button class="btn" onclick="previousquestion()">Previous</button>
+        <button class="btn" onclick="quitquiz()">Quit</button>
+        <button class="btn" onclick="nextquestion()">Next</button>
+    </div>
+    <div class="scoreboard">
+        <p class="scoretext">Score:</p>
+        <p id="score" class="score">0/0</p>
+    </div>
+
+    <script>
+        // console.log(localStorage.getItem('quiztype'))
+        // console.log(localStorage.getItem('score'))
+        // console.log(localStorage.getItem('questionNumber'))
+
+        let marvelquestions = [
+            {
+                question: 'who is iron man',
+                options: ['tony', 'josh', 'ravi', 'bruce'],
+                answer: 0
+            },
+            {
+                question: 'What is Captain America’s shield made of?',
+                options: ['Adamantium', 'Vibranium', 'Steel', 'Carbonite'],
+                answer: 1
+            },
+            {
+                question: 'Who is the God of Mischief?',
+                options: ['Thor', 'Odin', 'Loki', 'Heimdall'],
+                answer: 2
+            },
+            {
+                question: 'What is the name of the home world of Thanos?',
+                options: ['Titan', 'Zen-Whoberi', 'Xandar', 'Knowhere'],
+                answer: 0
+            },
+        
+        ];
+        let dcquestions = [
+            {
+                question: 'Who is known as the Dark Knight?',
+                options: ['Clark Kent', 'Bruce Wayne', 'Harvey Dent', 'Arthur Curry'],
+                answer: 1
+            },
+            {
+                question: 'What is the name of Wonder Woman’s home island?',
+                options: ['Atlantis', 'Kyoto', 'Themyscira', 'Asgard'],
+                answer: 2
+            },
+            {
+                question: 'What is the Green Lantern’s greatest weakness?',
+                options: ['The color yellow', 'Water', 'Fire', 'Lead'],
+                answer: 0
+            },
+            {
+                question: 'Which planet is Superman originally from?',
+                options: ['Mars', 'Krypton', 'Apokolips', 'Oa'],
+                answer: 1
+            }
+        ];
+        
+        let quizType=localStorage.getItem('quiztype')
+        let questionNumber=localStorage.getItem('questionNumber')
+        let score=localStorage.getItem('score')
+
+        let questionElement=document.getElementById('question')
+        let option1Element=document.getElementById('option1')
+        let option2Element=document.getElementById('option2')
+        let option3Element=document.getElementById('option3')
+        let option4Element=document.getElementById('option4')
+
+        
+
+
+
+        const quitquiz=()=>{
+            localStorage.clear()
+            window.location.href='index.html'
+        }
+        const previousquestion=()=>{
+             if(quizType == 'marvel'){
+                if(questionNumber>1){
+                localStorage.setItem('questionNumber',parseInt(questionNumber)-1)
+                window.location.href='quiz.html'
+                }
+                else{
+                    alert('minimum raeched')
+                }
+            }
+            else if(quizType == 'dc'){
+                if(questionNumber>1){
+                localStorage.setItem('questionNumber',parseInt(questionNumber)-1)
+                window.location.href='quiz.html'
+                }
+                else{
+                   alert('minimum raeched')
+                }
+            }
+        } 
+        const nextquestion=()=>{
+            if(quizType == 'marvel'){
+                if(questionNumber<marvelquestions.length){
+                localStorage.setItem('questionNumber',parseInt(questionNumber)+1)
+                window.location.href='quiz.html'
+                }
+                else{
+                    setscore()
+                    localStorage.setItem('finalscore',`${score}/${marvelquestions.length}`)
+                    window.location.href='score.html'
+                }
+            }
+            else if(quizType == 'dc'){
+                if(questionNumber<dcquestions.length){
+                localStorage.setItem('questionNumber',parseInt(questionNumber)+1)
+                window.location.href='quiz.html'
+                }
+                else{
+                    setscore()
+                    localStorage.setItem('finalscore',`${score}/${dcquestions.length}`)
+                    window.location.href='score.html'
+                }
+            }
+            
+        }
+
+        const status=()=>{
+            console.log('quiz type',quizType)
+            console.log('question number',questionNumber)
+            console.log('score',score)
+        }
+
+        const selectedoption=(optionnumber)=>{
+            let optionValue=document.getElementById('option'+optionnumber).innerHTML;
+            if(quizType=='marvel'){
+                if(optionValue==marvelquestions[questionNumber-1].options[marvelquestions[questionNumber-1].answer]){
+                  
+                    document.getElementById('option' + optionnumber + 'out').classList.add('rightanswer');
+                }
+                else{
+                    document.getElementById('option'+optionnumber+'out').classList.add('wronganswer')
+
+                }
+            }
+            else if(quizType=='dc'){
+                if(optionValue==dcquestions[questionNumber-1].options[dcquestions[questionNumber-1].answer]){
+                    document.getElementById('option'+optionnumber+'out').classList.add('rightanswer')
+                }
+                else{
+                    document.getElementById('option'+optionnumber+'out').classList.add('wronganswer')
+
+                }
+            }
+        }
+
+    //    selectedoption(2)
+        const clickedoption=(optionnumber)=>{
+            let optionValue=document.getElementById('option'+optionnumber).innerHTML;
+            
+            if(localStorage.getItem(`answer${questionNumber}`)==null){
+                if(quizType=='marvel'){
+                    if(optionValue==marvelquestions[questionNumber-1].options[marvelquestions[questionNumber-1].answer]){
+                        document.getElementById('option'+optionnumber+'out').classList.add('rightanswer')
+                        score++;
+                        localStorage.setItem('score',score)
+                        setscore()
+                    }
+                    else{
+                        document.getElementById('option'+optionnumber+'out').classList.add('wronganswer')
+
+                    }
+                }
+                else if(quizType=='dc'){
+                    if(optionValue==dcquestions[questionNumber-1].options[dcquestions[questionNumber-1].answer]){
+                        document.getElementById('option'+optionnumber+'out').classList.add('rightanswer')
+                        score++;
+                        localStorage.setItem('score',score)
+                        setscore()
+                    }
+                    else{
+                        document.getElementById('option'+optionnumber+'out').classList.add('wronganswer')
+
+                    }
+                }
+                localStorage.setItem(`answer${questionNumber}`,optionnumber)
+            }
+            else{
+                alert('you already answer the question')
+            }
+        }
+        
+        const setquestion=()=>{
+            if(quizType==='marvel'){
+                status()
+                questionElement.innerHTML=marvelquestions[questionNumber-1].question;
+                option1Element.innerHTML=marvelquestions[questionNumber-1].options[0];
+                option2Element.innerHTML=marvelquestions[questionNumber-1].options[1];
+                option3Element.innerHTML=marvelquestions[questionNumber-1].options[2];
+                option4Element.innerHTML=marvelquestions[questionNumber-1].options[3];
+
+                if(localStorage.getItem(`answer${questionNumber}`)!=null){
+                    selectedoption(localStorage.getItem(`answer${questionNumber}`));
+                }
+            }
+            else if(quizType==='dc'){
+                status()
+                questionElement.innerHTML=dcquestions[questionNumber-1].question;
+                option1Element.innerHTML=dcquestions[questionNumber-1].options[0];
+                option2Element.innerHTML=dcquestions[questionNumber-1].options[1];
+                option3Element.innerHTML=dcquestions[questionNumber-1].options[2];
+                option4Element.innerHTML=dcquestions[questionNumber-1].options[3];
+
+                if(localStorage.getItem(`answer${questionNumber}`)!=null){
+                    selectedoption(localStorage.getItem(`answer${questionNumber}`));
+                }
+            }
+            else{
+                console.log('no quiz type')
+                quitquiz()
+            }
+        }
+
+        const setscore=()=>{
+            let length=0;
+            if(quizType=='marvel'){
+                length=marvelquestions.length
+            }
+            else if(quizType=='dc'){
+                length=dcquestions.length
+            }
+            document.getElementById('score').innerHTML=`${score}/${length}`
+        }
+        setquestion()
+        setscore()
+
+
+
+
+
+    </script>
+</body>
+</html>
