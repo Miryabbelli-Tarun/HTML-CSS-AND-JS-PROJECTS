@@ -79,3 +79,9 @@ body{
 .details .col p{
     color: white;
 }
+.error{
+    color: white;
+    font-size: 20px;
+    margin-top: 7px;
+    display: none;
+}
